@@ -88,3 +88,4 @@ linter:
     - void_checks
     - prefer_single_quotes
     - use_full_hex_values_for_flutter_colors
+    - avoid_print
