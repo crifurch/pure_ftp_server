@@ -207,8 +207,7 @@ enum FtpCommands {
   XSEN,
 
   /// any not accepted command
-  UNKNOWN
-  ;
+  UNKNOWN;
 
   @override
   String toString() => name;

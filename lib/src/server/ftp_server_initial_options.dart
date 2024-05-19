@@ -16,15 +16,15 @@ class FtpServerInitialOptions {
   final SecurityType secureType;
   final String welcomeMessage;
 
-  const FtpServerInitialOptions({
-    required this.users,
-    this.host,
-    this.port = 21,
-    this.passivePortsRange = const PassivePortsRange(min: 10000, max: 20000),
-    this.keepAliveTimeout,
-    this.secureType = SecurityType.FTP,
-    this.welcomeMessage = 'Welcome to dart Pure FTP Server'
-  }) : assert(users.length == 0, 'You must provide as least one user');
+  const FtpServerInitialOptions(
+      {required this.users,
+      this.host,
+      this.port = 21,
+      this.passivePortsRange = const PassivePortsRange(min: 10000, max: 20000),
+      this.keepAliveTimeout,
+      this.secureType = SecurityType.FTP,
+      this.welcomeMessage = 'Welcome to dart Pure FTP Server'})
+      : assert(users.length == 0, 'You must provide as least one user');
 }
 
 @immutable

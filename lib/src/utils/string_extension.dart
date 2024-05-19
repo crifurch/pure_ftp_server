@@ -25,14 +25,13 @@ extension SttrinFormatExtension on String {
       length < 2 ? toLowerCase() : '${this[0].toLowerCase()}${substring(1)}';
 
   String get camelCase => splitMapJoin(
-    RegExp(r'([\s|_].)'),
-    onMatch: (m) => '${m[1]?[1]}'.toUpperCase(),
-  ).uncapitalize;
+        RegExp(r'([\s|_].)'),
+        onMatch: (m) => '${m[1]?[1]}'.toUpperCase(),
+      ).uncapitalize;
 
   String get pascalCase => camelCase.capitalize;
 
-  String get snakeCase =>
-      uncapitalize
-          .splitMapJoin(RegExp(r'([A-Z|\s])'), onMatch: (m) => '_${m[1]}'.trim())
-          .toLowerCase();
+  String get snakeCase => uncapitalize
+      .splitMapJoin(RegExp(r'([A-Z|\s])'), onMatch: (m) => '_${m[1]}'.trim())
+      .toLowerCase();
 }
