@@ -1,5 +1,5 @@
 name: pure_ftp_server
-description: A starting point for Dart libraries or applications.
+description: Simple and powerful FTP Server on Dart.
 version: 0.0.1
 homepage: https://github.com/crifurch/pure_ftp_server
 
