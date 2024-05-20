@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:pure_ftp_server/src/client/ftp_session.dart';
 import 'package:pure_ftp_server/src/utils/extensions/iterable_extension.dart';
@@ -32,33 +33,40 @@ class FtpServer {
     await for (var client in _server!) {
       _logCallback?.call(
           'New client connected from ${client.remoteAddress.address}:${client.remotePort}');
-      final ftpSession = _continueNonAuthorized(client);
-      ftpSession.write(
-        FtpResponse(220, message: _initialOptions.welcomeMessage),
-      );
+      final ftpSession = _continueNonAuthorized(client, client.asBroadcastStream());
+      ftpSession.write(FtpResponse.success(_initialOptions.welcomeMessage));
     }
   }
 
-  FtpSession _continueAuthorized(Socket socket, FtpUser user) {
+  FtpSession _continueAuthorized(
+      Socket socket, Stream<Uint8List> inStream, FtpUser user) {
     return FtpAuthorizedSession(
       socket: socket,
+      inStream: inStream,
       logCallback: _logCallback,
       fileSystem: user.fileSystem,
+      workMode: user.workMode,
       unAuthorize: _continueNonAuthorized,
     );
   }
 
-  FtpSession _continueNonAuthorized(Socket socket) {
+  FtpSession _continueNonAuthorized(Socket socket, Stream<Uint8List> inStream) {
     return FtpNonAuthorizedSession(
       socket: socket,
+      inStream: inStream,
       logCallback: _logCallback,
-      tryAuthorize: ({required socket, password, username}) {
+      tryAuthorize: ({
+        required inStream,
+        required socket,
+        password,
+        username,
+      }) async {
         final user = _initialOptions.users
             .firstWhereOrNull((element) => element.username == username);
         if (user == null || user.password != password) {
           return null;
         }
-        return _continueAuthorized(socket, user);
+        return _continueAuthorized(socket, inStream, user);
       },
     );
   }

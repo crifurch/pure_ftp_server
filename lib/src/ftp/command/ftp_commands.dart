@@ -37,6 +37,7 @@ enum FtpCommands {
 
   ///Change working directory.
   CWD,
+  CD,
 
   ///Delete file.
   DELE,

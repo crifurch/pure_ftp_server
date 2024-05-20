@@ -2,6 +2,7 @@ part of 'ftp_session.dart';
 
 typedef OnTryAuthorize = FutureOr<FtpSession?> Function({
   required Socket socket,
+  required Stream<Uint8List> inStream,
   String? username,
   String? password,
 });
@@ -12,6 +13,7 @@ class FtpNonAuthorizedSession extends FtpSession {
 
   FtpNonAuthorizedSession({
     required super.socket,
+    required super.inStream,
     required OnTryAuthorize tryAuthorize,
     super.logCallback,
     super.commandParser,
@@ -23,6 +25,7 @@ class FtpNonAuthorizedSession extends FtpSession {
   }) async {
     final result = await _onTryAuthorize(
       socket: _controlSocket,
+      inStream: _inStream,
       username: username ?? _cachedUserName,
       password: password,
     );

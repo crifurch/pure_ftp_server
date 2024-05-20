@@ -10,6 +10,7 @@ Future<void> main() async {
       users: [
         FtpUser(
           username: 'admin',
+          password: 'admin',
           fileSystem: FileSystem.system(Directory.current),
         ),
       ],
