@@ -36,11 +36,14 @@ String getSubPath(FileSystemEntity parent, String path) {
 }
 
 File? createExportForModule(Directory rootDir) {
-  if (isDirIgnoredForExport(rootDir)) {
-    return null;
-  }
   final exportFile =
       File('${rootDir.path}${Platform.pathSeparator}export.dart');
+  if (isDirIgnoredForExport(rootDir)) {
+    if (exportFile.existsSync()) {
+      exportFile.deleteSync();
+    }
+    return null;
+  }
   if (exportFile.existsSync()) {
     exportFile.deleteSync();
   }

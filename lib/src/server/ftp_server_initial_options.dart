@@ -24,7 +24,7 @@ class FtpServerInitialOptions {
       this.keepAliveTimeout,
       this.secureType = SecurityType.FTP,
       this.welcomeMessage = 'Welcome to dart Pure FTP Server'})
-      : assert(users.length == 0, 'You must provide as least one user');
+      : assert(users.length != 0, 'You must provide as least one user');
 }
 
 @immutable

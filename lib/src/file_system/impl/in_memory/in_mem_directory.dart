@@ -2,7 +2,7 @@ part of 'in_mem_file_system.dart';
 
 class InMemDirectory with FSDirectory {
   final InMemFileSystem _fileSystem;
-  Map<String, dynamic>? _workMap;
+  final Map<String, dynamic>? _workMap;
   final String path;
 
   InMemDirectory({

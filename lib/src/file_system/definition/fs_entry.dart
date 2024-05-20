@@ -1,3 +1,3 @@
-abstract class FsEntry{
+abstract class FsEntry {
   bool exists();
 }

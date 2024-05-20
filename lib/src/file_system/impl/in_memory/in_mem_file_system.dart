@@ -9,7 +9,7 @@ part 'in_mem_file.dart';
 
 part 'in_mem_directory.dart';
 
-class InMemFileSystem extends FileSystem {
+class InMemFileSystem implements FileSystem {
   final Map<String, dynamic> _workMap;
   final int? memoryLimit;
 

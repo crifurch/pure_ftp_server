@@ -2,8 +2,8 @@
 part of 'in_mem_file_system.dart';
 
 class InMemFile with FSFile {
-  InMemFileSystem _fileSystem;
-  Uint8List? _data;
+  final InMemFileSystem _fileSystem;
+  final Uint8List? _data;
   final String path;
 
   InMemFile({
@@ -17,5 +17,5 @@ class InMemFile with FSFile {
   bool exists() => _data != null;
 
   @override
-  int get size => _data?.length??-1;
+  int get size => _data?.length ?? -1;
 }
