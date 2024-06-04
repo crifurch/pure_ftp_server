@@ -19,14 +19,28 @@ class StaticCommandHandler extends FtpCommandHandler {
 
   void _init() {
     _unHandler = RootCommandHandler(
-        handlers: _auth, defaultHandler: NonAuthorizedHandler());
+      handlers: _auth,
+      defaultHandler: NonAuthorizedHandler(),
+    );
     //todo remake after implements more
     _authorizedHandler = RootCommandHandler(
-        handlers: [], defaultHandler: NonAuthorizedHandler());
+      handlers: [
+        ..._fsLookOnly,
+        ..._fsReadOnly,
+      ],
+      defaultHandler: _unknownHandler,
+    );
     _readOnlyHandler = RootCommandHandler(
-        handlers: [], defaultHandler: NonAuthorizedHandler());
+      handlers: [
+        ..._fsLookOnly,
+        ..._fsReadOnly,
+      ],
+      defaultHandler: _unknownHandler,
+    );
     _lookOnlyHandler = RootCommandHandler(
-        handlers: [], defaultHandler: NonAuthorizedHandler());
+      handlers: _fsLookOnly,
+      defaultHandler: _unknownHandler,
+    );
   }
 
   @override
@@ -34,11 +48,11 @@ class StaticCommandHandler extends FtpCommandHandler {
     if (options.command.command == FtpCommands.UNKNOWN) {
       return _unknownHandler.handle(options);
     }
-    if (options.session is FtpNonAuthorizedSession) {
+    if (options.session is ClientNonAuthorizedSession) {
       return _unHandler.handle(options);
     }
     RootCommandHandler handler;
-    switch ((options.session as FtpAuthorizedSession).workMode) {
+    switch ((options.session as ClientAuthorizedSession).workMode) {
       case FtpWorkMode.readWrite:
         handler = _authorizedHandler;
         break;
@@ -53,11 +67,23 @@ class StaticCommandHandler extends FtpCommandHandler {
   }
 
   @override
-  List<FtpCommands> get supportedCommands => [];
+  List<FtpCommands> get supportedCommands => const [];
 
   List<FtpCommandHandler> get _auth => [
         AuthHandler(),
         UserHandler(),
         PassHandler(),
+      ];
+
+  List<FtpCommandHandler> get _fsLookOnly => [
+        PwdHandler(),
+        PortHandler(),
+        ListHandler(),
+        CdHandler(),
+        CdUpHandler(),
+      ];
+
+  List<FtpCommandHandler> get _fsReadOnly => [
+        TypeHandler(),
       ];
 }

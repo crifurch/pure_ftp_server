@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:pure_ftp_server/src/client/ftp_session.dart';
+import 'package:pure_ftp_server/src/client/client_session.dart';
 import 'package:pure_ftp_server/src/utils/extensions/iterable_extension.dart';
 import 'package:pure_ftp_server/src/utils/typedefs.dart';
 
@@ -38,9 +38,9 @@ class FtpServer {
     }
   }
 
-  FtpSession _continueAuthorized(
+  ClientSession _continueAuthorized(
       Socket socket, Stream<Uint8List> inStream, FtpUser user) {
-    return FtpAuthorizedSession(
+    return ClientAuthorizedSession(
       socket: socket,
       inStream: inStream,
       logCallback: _logCallback,
@@ -50,8 +50,8 @@ class FtpServer {
     );
   }
 
-  FtpSession _continueNonAuthorized(Socket socket, Stream<Uint8List> inStream) {
-    return FtpNonAuthorizedSession(
+  ClientSession _continueNonAuthorized(Socket socket, Stream<Uint8List> inStream) {
+    return ClientNonAuthorizedSession(
       socket: socket,
       inStream: inStream,
       logCallback: _logCallback,

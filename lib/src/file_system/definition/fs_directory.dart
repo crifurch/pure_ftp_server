@@ -1,3 +1,9 @@
-import 'fs_entry.dart';
+import 'fs_entity.dart';
 
-mixin FSDirectory implements FsEntry {}
+mixin FsDirectory implements FsEntity {
+  List<FsEntity> list({bool recursive = false});
+
+  @override
+  String get permissionsString =>
+      'd${FsEntity.permissionsToString(permissions)}';
+}

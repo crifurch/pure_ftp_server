@@ -1,5 +1,7 @@
-import 'fs_entry.dart';
+import 'fs_entity.dart';
 
-mixin FSFile implements FsEntry {
-  int get size;
+mixin FsFile implements FsEntity {
+  @override
+  String get permissionsString =>
+      '-${FsEntity.permissionsToString(permissions)}';
 }

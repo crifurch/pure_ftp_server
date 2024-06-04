@@ -1,12 +1,25 @@
-import 'dart:io';
+part of 'hw_entity.dart';
 
-import '../../definition/fs_directory.dart';
-
-class HwDirectory with FSDirectory {
-  final Directory _directory;
-
-  HwDirectory(this._directory);
+class HwDirectory extends HwEntity<Directory> with FsDirectory {
+  HwDirectory(super._entity);
 
   @override
-  bool exists() => _directory.existsSync();
+  List<FsEntity> list({bool recursive = false}) {
+    final entries = _entity.listSync(recursive: recursive);
+    final result = <FsEntity>[];
+    //todo: remake with dart 3
+    for (final entity in entries) {
+      if (entity is File) {
+        result.add(HwFile(entity));
+      } else if (entity is Directory) {
+        result.add(HwDirectory(entity));
+      }
+    }
+    return result;
+  }
+
+
+
+
+
 }

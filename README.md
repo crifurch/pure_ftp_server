@@ -9,4 +9,23 @@
 
 ## Package status
 
+### Implemented features 
+
+✅ multi users</br>
+
+### Supported ftp commands
+
+### Implemented file systems
+
+✅ native file system</br>
+❌ in mem file system</br>
+❌ one file system</br>
+
+
+### Implemented protocols
+
+✅ FTP</br>
+❌ HTTP</br>
+❌ WebSocket</br>
+
 This package is still under development and I will be happy to receive your feedback.

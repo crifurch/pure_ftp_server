@@ -1,4 +1,4 @@
-import 'package:pure_ftp_server/src/client/ftp_session.dart';
+import 'package:pure_ftp_server/src/client/client_session.dart';
 import 'package:pure_ftp_server/src/ftp/command/ftp_commands.dart';
 import 'package:pure_ftp_server/src/ftp/response/ftp_response.dart';
 
@@ -12,7 +12,7 @@ class UserHandler extends FtpCommandHandler {
     if (args.isEmpty) {
       return const FtpResponse.error('you must provide username');
     }
-    final ftpSession = await (options.session as FtpNonAuthorizedSession)
+    final ftpSession = await (options.session as ClientNonAuthorizedSession)
         .login(username: args.join(' '));
     if (identical(ftpSession,options.session)) {
       return const FtpResponse(331, message: 'Provide password');

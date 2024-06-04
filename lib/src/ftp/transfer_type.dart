@@ -1,0 +1,4 @@
+enum TransferType {
+  ascii,
+  binary,
+}

@@ -9,13 +9,16 @@ import 'package:pure_ftp_server/src/ftp/ftp_work_mode.dart';
 import 'package:pure_ftp_server/src/ftp/handler/ftp_command_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/root_command_handler.dart';
 import 'package:pure_ftp_server/src/ftp/response/ftp_response.dart';
+import 'package:pure_ftp_server/src/ftp/transfer_type.dart';
+import 'package:pure_ftp_server/src/transfer/transfer_socket.dart';
+import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 import 'package:pure_ftp_server/src/utils/typedefs.dart';
 
-part 'ftp_nonauth_session.dart';
+part 'client_auth_session.dart';
 
-part 'ftp_auth_session.dart';
+part 'client_nonauth_session.dart';
 
-class FtpSession {
+class ClientSession {
   final LogCallback? _logCallback;
   final Socket _controlSocket;
   final Stream<Uint8List> _inStream;
@@ -23,7 +26,7 @@ class FtpSession {
   late StreamSubscription<Uint8List> _listen;
   final FtpCommandHandler _commandHandler;
 
-  FtpSession({
+  ClientSession({
     required Socket socket,
     required Stream<Uint8List> inStream,
     LogCallback? logCallback,
@@ -45,13 +48,22 @@ class FtpSession {
       '${_controlSocket.remoteAddress.address}:${_controlSocket.remoteAddress.address}< '
       '$decode',
     );
-    final ftpResponse = await _commandHandler.handle(
-      CommandHandlerOptions(
-        session: this,
-        command: command,
-      ),
-    );
-    write(ftpResponse);
+    FtpResponse response;
+    try {
+      response = await _commandHandler
+          .handle(
+            CommandHandlerOptions(
+              session: this,
+              command: command,
+            ),
+          )
+          .catchError(
+            (error) => const FtpResponse.error('Error while handling'),
+          );
+    } on Exception {
+      response = const FtpResponse.error('Error while handling');
+    }
+    write(response);
   }
 
   void write(FtpResponse response) {

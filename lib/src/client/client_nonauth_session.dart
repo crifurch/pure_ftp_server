@@ -1,17 +1,17 @@
-part of 'ftp_session.dart';
+part of 'client_session.dart';
 
-typedef OnTryAuthorize = FutureOr<FtpSession?> Function({
+typedef OnTryAuthorize = FutureOr<ClientSession?> Function({
   required Socket socket,
   required Stream<Uint8List> inStream,
   String? username,
   String? password,
 });
 
-class FtpNonAuthorizedSession extends FtpSession {
+class ClientNonAuthorizedSession extends ClientSession {
   final OnTryAuthorize _onTryAuthorize;
   String? _cachedUserName;
 
-  FtpNonAuthorizedSession({
+  ClientNonAuthorizedSession({
     required super.socket,
     required super.inStream,
     required OnTryAuthorize tryAuthorize,
@@ -19,7 +19,7 @@ class FtpNonAuthorizedSession extends FtpSession {
     super.commandParser,
   }) : _onTryAuthorize = tryAuthorize;
 
-  Future<FtpSession> login({
+  Future<ClientSession> login({
     String? username,
     String? password,
   }) async {

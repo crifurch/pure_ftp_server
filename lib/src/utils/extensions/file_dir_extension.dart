@@ -10,6 +10,9 @@ extension DirectoryExtension on Directory {
   File getFile(String filename) =>
       File('$path${Platform.pathSeparator}$filename');
 
+  FileSystemEntityType getEntityType(String entityPath) =>
+      FileSystemEntity.typeSync('$path${Platform.pathSeparator}$entityPath');
+  
   static Directory fromUrlEncoded(String path) =>
       Directory(path.replaceAll('/', Platform.pathSeparator));
 }

@@ -12,4 +12,6 @@ class ParsedFtpCommand {
   ParsedFtpCommand copyWithArgs(List<String> args) {
     return ParsedFtpCommand(command, args);
   }
+
+  String get argsLine=>args.join(' ');
 }

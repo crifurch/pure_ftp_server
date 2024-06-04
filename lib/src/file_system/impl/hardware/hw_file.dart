@@ -1,15 +1,8 @@
-import 'dart:io';
+part of 'hw_entity.dart';
 
-import '../../definition/fs_file.dart';
-
-class HwFile with FSFile {
-  final File _file;
-
-  HwFile(this._file);
+class HwFile extends HwEntity<File> with FsFile {
+  HwFile(super._entity);
 
   @override
-  bool exists() => _file.existsSync();
-
-  @override
-  int get size => _file.lengthSync();
+  int get size => _entity.lengthSync();
 }
