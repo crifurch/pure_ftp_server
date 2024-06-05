@@ -18,8 +18,6 @@ class HwDirectory extends HwEntity<Directory> with FsDirectory {
     return result;
   }
 
-
-
-
-
+  @override
+  void create() => _entity.createSync();
 }

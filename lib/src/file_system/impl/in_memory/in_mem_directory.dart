@@ -41,4 +41,8 @@ class InMemDirectory extends InMemEntity<Map<String, dynamic>?> with FsDirectory
   @override
   int get size => 0;
 
+  @override
+  void create() {
+    // TODO: implement create
+  }
 }

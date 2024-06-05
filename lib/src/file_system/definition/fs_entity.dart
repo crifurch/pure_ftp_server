@@ -11,7 +11,9 @@ abstract class FsEntity {
 
   String get permissionsString;
 
-  static String permissionsToString(int permissionCode){
+  void create();
+
+  static String permissionsToString(int permissionCode) {
     const codes = ['---', '--x', '-w-', '-wx', 'r--', 'r-x', 'rw-', 'rwx'];
     final permissions = permissionCode & 0xFFF;
     final result = [

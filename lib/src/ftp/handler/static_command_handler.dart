@@ -22,9 +22,9 @@ class StaticCommandHandler extends FtpCommandHandler {
       handlers: _auth,
       defaultHandler: NonAuthorizedHandler(),
     );
-    //todo remake after implements more
     _authorizedHandler = RootCommandHandler(
       handlers: [
+        ..._fsWrite,
         ..._fsLookOnly,
         ..._fsReadOnly,
       ],
@@ -85,5 +85,9 @@ class StaticCommandHandler extends FtpCommandHandler {
 
   List<FtpCommandHandler> get _fsReadOnly => [
         TypeHandler(),
+      ];
+
+  List<FtpCommandHandler> get _fsWrite => [
+        MkdHandler(),
       ];
 }

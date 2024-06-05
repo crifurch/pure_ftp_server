@@ -9,4 +9,9 @@ class InMemFile extends InMemEntity<Uint8List?> with FsFile {
 
   @override
   int get size => _data?.length ?? -1;
+
+  @override
+  void create() {
+    // TODO: implement create
+  }
 }

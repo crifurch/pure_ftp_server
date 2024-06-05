@@ -4,7 +4,6 @@ import 'package:pure_ftp_server/pure_ftp_server.dart';
 import 'package:pure_ftp_server/src/utils/extensions/file_dir_extension.dart';
 
 part 'hw_directory.dart';
-
 part 'hw_file.dart';
 
 abstract class HwEntity<T extends FileSystemEntity> implements FsEntity {

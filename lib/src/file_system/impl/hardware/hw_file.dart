@@ -5,4 +5,7 @@ class HwFile extends HwEntity<File> with FsFile {
 
   @override
   int get size => _entity.lengthSync();
+
+  @override
+  void create() => _entity.createSync();
 }
