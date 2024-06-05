@@ -71,24 +71,24 @@ class StaticCommandHandler extends FtpCommandHandler {
   List<FtpCommands> get supportedCommands => const [];
 
   List<FtpCommandHandler> get _auth => [
-    AuthHandler(),
-    UserHandler(),
-    PassHandler(),
-  ];
+        AuthHandler(),
+        UserHandler(),
+        PassHandler(),
+      ];
 
   List<FtpCommandHandler> get _fsLookOnly => [
-    PwdHandler(),
-    PortHandler(),
-    ListHandler(),
-    CdHandler(),
-    CdUpHandler(),
-  ];
+        PwdHandler(),
+        PortHandler(),
+        ListHandler(),
+        CdHandler(),
+        CdUpHandler(),
+      ];
 
   List<FtpCommandHandler> get _fsReadOnly => [
-    TypeHandler(),
-  ];
+        TypeHandler(),
+      ];
 
   List<FtpCommandHandler> get _fsWrite => [
-    MkdHandler(),
-  ];
+        MkdHandler(),
+      ];
 }

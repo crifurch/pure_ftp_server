@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:pure_ftp_server/src/utils/extensions/file_dir_extension.dart';
 
-
 Future<ProcessResult> runDartFormat(List<FileSystemEntity> entities) {
   assert(entities.isNotEmpty);
   final current = Directory.current;
