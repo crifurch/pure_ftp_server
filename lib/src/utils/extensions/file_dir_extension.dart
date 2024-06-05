@@ -12,7 +12,7 @@ extension DirectoryExtension on Directory {
 
   FileSystemEntityType getEntityType(String entityPath) =>
       FileSystemEntity.typeSync('$path${Platform.pathSeparator}$entityPath');
-  
+
   static Directory fromUrlEncoded(String path) =>
       Directory(path.replaceAll('/', Platform.pathSeparator));
 }

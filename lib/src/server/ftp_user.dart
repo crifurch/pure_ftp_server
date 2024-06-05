@@ -17,4 +17,3 @@ class FtpUser {
     this.workMode = FtpWorkMode.readWrite,
   });
 }
-

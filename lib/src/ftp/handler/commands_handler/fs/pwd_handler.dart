@@ -7,7 +7,8 @@ import '../../ftp_command_handler.dart';
 class PwdHandler extends FtpCommandHandler {
   @override
   Future<FtpResponse> handle(CommandHandlerOptions options) async {
-        return FtpResponse.success((options.session as ClientAuthorizedSession).currentPath);
+    return FtpResponse.success(
+        (options.session as ClientAuthorizedSession).currentPath);
   }
 
   @override

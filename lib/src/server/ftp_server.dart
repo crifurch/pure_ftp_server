@@ -33,7 +33,8 @@ class FtpServer {
     await for (var client in _server!) {
       _logCallback?.call(
           'New client connected from ${client.remoteAddress.address}:${client.remotePort}');
-      final ftpSession = _continueNonAuthorized(client, client.asBroadcastStream());
+      final ftpSession =
+          _continueNonAuthorized(client, client.asBroadcastStream());
       ftpSession.write(FtpResponse.success(_initialOptions.welcomeMessage));
     }
   }
@@ -50,7 +51,8 @@ class FtpServer {
     );
   }
 
-  ClientSession _continueNonAuthorized(Socket socket, Stream<Uint8List> inStream) {
+  ClientSession _continueNonAuthorized(
+      Socket socket, Stream<Uint8List> inStream) {
     return ClientNonAuthorizedSession(
       socket: socket,
       inStream: inStream,

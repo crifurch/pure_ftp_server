@@ -11,9 +11,9 @@ extension IterableFirstWhere<T> on Iterable<T> {
   }
 
   Future<T> firstWhereAsync(
-      Future<bool> Function(T element) test, {
-        FutureOr<T> Function()? orElse,
-      }) async {
+    Future<bool> Function(T element) test, {
+    FutureOr<T> Function()? orElse,
+  }) async {
     for (final element in this) {
       if (await test(element)) {
         return element;

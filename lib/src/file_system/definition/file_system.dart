@@ -18,6 +18,4 @@ abstract class FileSystem {
   FsDirectory getDirectory(String path);
 
   FsEntity? getEntity(String path);
-
-
 }

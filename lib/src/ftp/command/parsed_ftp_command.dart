@@ -13,5 +13,5 @@ class ParsedFtpCommand {
     return ParsedFtpCommand(command, args);
   }
 
-  String get argsLine=>args.join(' ');
+  String get argsLine => args.join(' ');
 }

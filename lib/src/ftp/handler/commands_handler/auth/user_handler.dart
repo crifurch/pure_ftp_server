@@ -5,7 +5,6 @@ import 'package:pure_ftp_server/src/ftp/response/ftp_response.dart';
 import '../../ftp_command_handler.dart';
 
 class UserHandler extends FtpCommandHandler {
-
   @override
   Future<FtpResponse> handle(CommandHandlerOptions options) async {
     final args = options.command.args;
@@ -14,7 +13,7 @@ class UserHandler extends FtpCommandHandler {
     }
     final ftpSession = await (options.session as ClientNonAuthorizedSession)
         .login(username: args.join(' '));
-    if (identical(ftpSession,options.session)) {
+    if (identical(ftpSession, options.session)) {
       return const FtpResponse(331, message: 'Provide password');
     } else {
       return const FtpResponse.success('Successful authorized');

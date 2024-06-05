@@ -1,6 +1,7 @@
 part of 'in_mem_file_system.dart';
 
-class InMemDirectory extends InMemEntity<Map<String, dynamic>?> with FsDirectory {
+class InMemDirectory extends InMemEntity<Map<String, dynamic>?>
+    with FsDirectory {
   InMemDirectory({
     required super.path,
     required super.fileSystem,

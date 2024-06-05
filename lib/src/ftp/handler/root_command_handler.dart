@@ -10,11 +10,7 @@ import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/pwd_handler.
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/misc/type_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/transfer/list_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/transfer/port_handler.dart';
-import 'package:pure_ftp_server/src/ftp/handler/default/unknown_handler.dart';
 import 'package:pure_ftp_server/src/utils/extensions/iterable_extension.dart';
-
-import '../ftp_work_mode.dart';
-import 'default/unauthed_handler.dart';
 
 part 'static_command_handler.dart';
 

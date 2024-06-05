@@ -8,7 +8,8 @@ class UnknownHandler extends FtpCommandHandler {
 
   @override
   Future<FtpResponse> handle(CommandHandlerOptions options) async {
-    return const FtpResponse.error('this ftp server doesn\'t support this command');
+    return const FtpResponse.error(
+        'this ftp server doesn\'t support this command');
   }
 
   @override
