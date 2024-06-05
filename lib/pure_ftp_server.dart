@@ -4,4 +4,4 @@ export 'src/client/export.dart';
 export 'src/file_system/export.dart';
 export 'src/ftp/export.dart';
 export 'src/server/export.dart';
-export 'src/utils/export.dart';
+export 'src/transfer/export.dart';

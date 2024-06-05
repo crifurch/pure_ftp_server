@@ -1,3 +1,4 @@
+//ignore_export
 part of 'client_session.dart';
 
 typedef OnUnAuthorize = FutureOr<ClientSession> Function(

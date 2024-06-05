@@ -1,10 +1,11 @@
+//ignore_export
 part of 'client_session.dart';
 
 typedef OnTryAuthorize = FutureOr<ClientSession?> Function({
-  required Socket socket,
-  required Stream<Uint8List> inStream,
-  String? username,
-  String? password,
+required Socket socket,
+required Stream<Uint8List> inStream,
+String? username,
+String? password,
 });
 
 class ClientNonAuthorizedSession extends ClientSession {

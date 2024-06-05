@@ -25,7 +25,7 @@ bool isFileIgnoredForExport(File file) =>
     !file.path.endsWith('.dart') ||
     file.path.contains('.g.') ||
     file.path.contains('.freezed.') ||
-    file.readAsStringSync().contains('//_ignore_export');
+    file.readAsStringSync().contains('//ignore_export');
 
 String getSubPath(FileSystemEntity parent, String path) {
   final parentPath = parent.path;

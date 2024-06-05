@@ -1,5 +1,10 @@
 export 'command/ftp_commands.dart';
 export 'command/parsed_ftp_command.dart';
 export 'command/parser.dart';
+export 'ftp_work_mode.dart';
+export 'handler/default/unauthed_handler.dart';
+export 'handler/default/unknown_handler.dart';
 export 'handler/ftp_command_handler.dart';
+export 'handler/root_command_handler.dart';
 export 'response/ftp_response.dart';
+export 'transfer_type.dart';
