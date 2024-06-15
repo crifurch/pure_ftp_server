@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:pure_ftp_server/pure_ftp_server.dart';
 
@@ -12,6 +13,17 @@ Future<void> main() async {
           username: 'admin',
           password: 'admin',
           fileSystem: FileSystem.system(Directory.current),
+        ),
+        FtpUser(
+          username: 'admin2',
+          password: 'admin',
+          fileSystem: FileSystem.inMem(
+            initialData: {
+              'test': {
+                'readMe.txt': Uint8List.fromList('i\'m test'.codeUnits),
+              },
+            },
+          ),
         ),
       ],
     ),

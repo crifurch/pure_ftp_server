@@ -15,7 +15,6 @@ import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 import 'package:pure_ftp_server/src/utils/typedefs.dart';
 
 part 'client_auth_session.dart';
-
 part 'client_nonauth_session.dart';
 
 class ClientSession {
@@ -53,34 +52,46 @@ class ClientSession {
       response = await _commandHandler
           .handle(
             CommandHandlerOptions(
-              session: this,
-              command: command,
-            ),
-          )
+          session: this,
+          command: command,
+        ),
+      )
           .catchError(
-            (error) => const FtpResponse.error('Error while handling'),
-          );
-    } on Exception {
+        (error) {
+          _logCallback?.call(error.toString());
+          return const FtpResponse.error('Error while handling');
+        },
+      );
+    } on Exception catch (e) {
+      _logCallback?.call(e.toString());
       response = const FtpResponse.error('Error while handling');
     }
     write(response);
   }
 
   void write(FtpResponse response) {
-    final responseString = '${response.code} ${response.message}';
-    _controlSocket.write('$responseString\r\n');
-    _logCallback?.call(
-      '[${DateTime.now().toString()}] '
-      '${_controlSocket.remoteAddress.address}:${_controlSocket.remoteAddress.address}> '
-      '$responseString',
-    );
+    try {
+      final responseString = '${response.code} ${response.message}';
+      _controlSocket.write('$responseString\r\n');
+      _logCallback?.call(
+        '[${DateTime.now().toString()}] '
+        '${_controlSocket.remoteAddress.address}:${_controlSocket.remoteAddress.address}> '
+        '$responseString',
+      );
+    } on Exception {
+      close();
+    }
   }
 
   Future<void> _quit() => _listen.cancel();
 
   Future<void> close() async {
     await _quit();
-    await _controlSocket.close();
+    try {
+      await _controlSocket.close();
+    } on Exception {
+      //ignore socket closed
+    }
     _logCallback?.call('Connection closed');
   }
 }

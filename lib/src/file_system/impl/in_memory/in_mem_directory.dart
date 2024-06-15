@@ -19,11 +19,11 @@ class InMemDirectory extends InMemEntity<Map<String, dynamic>?>
     _fireExceptionNonExists();
     final result = <FsEntity>[];
     for (final entity in _data!.entries) {
-      if (entity.value is Map<String, dynamic>) {
+      if (entity.value is Map) {
         final dir = InMemDirectory(
             path: '$path/${entity.key}',
             fileSystem: _fileSystem,
-            data: entity.value);
+            data: (entity.value as Map).cast());
         result.add(dir);
         if (recursive) {
           result.addAll(dir.list(recursive: recursive));

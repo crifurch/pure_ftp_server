@@ -27,7 +27,7 @@ class ListHandler extends FtpCommandHandler {
     } else if (entity is FsDirectory) {
       list.addAll(entity.list());
     }
-    if (list.isEmpty) {
+    if (list.isEmpty && (entity is FsDirectory && !entity.exists)) {
       return const FtpResponse.error('file system entity not found');
     }
     session.write(const FtpResponse.transferAccept());

@@ -7,9 +7,7 @@ import 'package:pure_ftp_server/src/file_system/definition/fs_file.dart';
 import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 
 part 'in_mem_directory.dart';
-
 part 'in_mem_entity.dart';
-
 part 'in_mem_file.dart';
 
 class InMemFileSystem implements FileSystem {
@@ -28,11 +26,19 @@ class InMemFileSystem implements FileSystem {
   int get availableSpace => (memoryLimit ?? _maxInteger) - _usedMemory;
 
   dynamic _scanForData(String path) {
-    var split = path.split('/');
+    final urlPath = path.urlEncoded;
+    final pathEncoded = urlPath.substring(
+      urlPath.startsWith('/') ? 1 : 0,
+    );
+    var split = pathEncoded.split('/');
+    dynamic workMap = _workMap;
+    if (split.isEmpty || (split.length == 1 && split.first.isEmpty)) {
+      return workMap;
+    }
     if (split.isNotEmpty && split.first.isEmpty) {
       split = split.skip(1).toList();
     }
-    dynamic workMap = _workMap;
+
     try {
       for (final path in split) {
         workMap = workMap?[path];
@@ -74,7 +80,7 @@ class InMemFileSystem implements FileSystem {
     return InMemDirectory(
       path: urlPath,
       fileSystem: this,
-      data: data is Map<String, dynamic> ? data : null,
+      data: (data is Map) ? data.cast() : null,
     );
   }
 
