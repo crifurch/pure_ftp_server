@@ -20,4 +20,7 @@ class HwDirectory extends HwEntity<Directory> with FsDirectory {
 
   @override
   void create() => _entity.createSync();
+
+  @override
+  void delete() => _entity.deleteSync(recursive: true);
 }

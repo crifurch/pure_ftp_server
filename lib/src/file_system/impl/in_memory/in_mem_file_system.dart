@@ -4,6 +4,7 @@ import 'package:pure_ftp_server/src/file_system/definition/file_system.dart';
 import 'package:pure_ftp_server/src/file_system/definition/fs_directory.dart';
 import 'package:pure_ftp_server/src/file_system/definition/fs_entity.dart';
 import 'package:pure_ftp_server/src/file_system/definition/fs_file.dart';
+import 'package:pure_ftp_server/src/file_system/types/u_mask.dart';
 import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 
 part 'in_mem_directory.dart';
@@ -15,8 +16,11 @@ class InMemFileSystem implements FileSystem {
   final Map<String, dynamic> _workMap;
   final int? memoryLimit;
   int _usedMemory = 0;
+  @override
+  UMask defaultUMask;
 
   InMemFileSystem({
+    required this.defaultUMask,
     this.memoryLimit,
     Map<String, dynamic>? initialData,
   }) : _workMap = initialData ?? {} {
@@ -110,4 +114,8 @@ class InMemFileSystem implements FileSystem {
     }
     return memory;
   }
+
+  @override
+  void applyPermissions(String path) =>
+      getEntity(path)?.applyPermissions(defaultUMask);
 }

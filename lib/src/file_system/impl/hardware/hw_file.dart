@@ -8,4 +8,7 @@ class HwFile extends HwEntity<File> with FsFile {
 
   @override
   void create() => _entity.createSync();
+
+  @override
+  void delete() => _entity.deleteSync(recursive: true);
 }

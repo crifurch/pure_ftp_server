@@ -1,3 +1,5 @@
+import 'package:pure_ftp_server/src/file_system/types/u_mask.dart';
+
 abstract class FsEntity {
   bool get exists;
 
@@ -13,6 +15,8 @@ abstract class FsEntity {
 
   void create();
 
+  void delete();
+
   static String permissionsToString(int permissionCode) {
     const codes = ['---', '--x', '-w-', '-wx', 'r--', 'r-x', 'rw-', 'rwx'];
     final permissions = permissionCode & 0xFFF;
@@ -23,4 +27,6 @@ abstract class FsEntity {
     ];
     return result.join();
   }
+
+  void applyPermissions(UMask uMask);
 }

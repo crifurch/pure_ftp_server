@@ -4,7 +4,7 @@ import 'package:pure_ftp_server/src/ftp/response/ftp_response.dart';
 
 import '../../ftp_command_handler.dart';
 
-class MkdHandler extends FtpCommandHandler {
+class DeleHandler extends FtpCommandHandler {
   @override
   Future<FtpResponse> handle(CommandHandlerOptions options) async {
     final session = options.session as ClientAuthorizedSession;
@@ -14,13 +14,16 @@ class MkdHandler extends FtpCommandHandler {
     }
     final directory = session.fileSystem.getDirectory(dir);
     if (directory.exists) {
-      return const FtpResponse.error('Directory already exists');
+      return const FtpResponse.error('FSEntity not exist exists');
     }
-    directory.create();
-    session.fileSystem.applyPermissions(dir);
+    try {
+      directory.delete();
+    } on Exception {
+      return const FtpResponse.permissionDenied();
+    }
     return const FtpResponse.success('Directory created successfully');
   }
 
   @override
-  List<FtpCommands> get supportedCommands => [FtpCommands.MKD];
+  List<FtpCommands> get supportedCommands => [FtpCommands.DELE];
 }

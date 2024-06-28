@@ -2,13 +2,19 @@ import 'dart:io';
 
 import 'package:pure_ftp_server/pure_ftp_server.dart';
 import 'package:pure_ftp_server/src/file_system/impl/hardware/hw_entity.dart';
+import 'package:pure_ftp_server/src/file_system/types/u_mask.dart';
 import 'package:pure_ftp_server/src/utils/extensions/file_dir_extension.dart';
 import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 
 class HwFileSystem implements FileSystem {
   final Directory _workingDir;
+  @override
+  UMask defaultUMask;
 
-  HwFileSystem(this._workingDir);
+  HwFileSystem(
+    this._workingDir, {
+    required this.defaultUMask,
+  });
 
   @override
   FsEntity? getEntity(String path) {
@@ -54,4 +60,8 @@ class HwFileSystem implements FileSystem {
           .pathEncoded,
     ));
   }
+
+  @override
+  void applyPermissions(String path) =>
+      getEntity(path)?.applyPermissions(defaultUMask);
 }

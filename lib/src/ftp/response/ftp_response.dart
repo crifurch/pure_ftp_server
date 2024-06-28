@@ -9,6 +9,9 @@ class FtpResponse {
 
   const FtpResponse.error([this.message = 'Error']) : code = 550;
 
+  const FtpResponse.permissionDenied([this.message = 'Permission denied'])
+      : code = 550;
+
   const FtpResponse.success([this.message = 'Ok']) : code = 220;
 
   const FtpResponse.transferAccept([this.message = 'Accepted data connection'])

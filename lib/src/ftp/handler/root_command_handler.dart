@@ -5,6 +5,7 @@ import 'package:pure_ftp_server/src/ftp/handler/commands_handler/auth/pass_handl
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/auth/user_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/cd_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/cdup_handler.dart';
+import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/dele_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/mkd_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/pwd_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/misc/type_handler.dart';

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:pure_ftp_server/src/exceptions/ftp_server_exception.dart';
 import 'package:pure_ftp_server/src/file_system/definition/file_system.dart';
 import 'package:pure_ftp_server/src/ftp/command/parser.dart';
 import 'package:pure_ftp_server/src/ftp/ftp_work_mode.dart';
@@ -51,7 +52,7 @@ class ClientSession {
     try {
       response = await _commandHandler
           .handle(
-            CommandHandlerOptions(
+        CommandHandlerOptions(
           session: this,
           command: command,
         ),
@@ -64,7 +65,11 @@ class ClientSession {
       );
     } on Exception catch (e) {
       _logCallback?.call(e.toString());
-      response = const FtpResponse.error('Error while handling');
+      if (e is FtpServerException) {
+        response = FtpResponse.error(e.toString());
+      } else {
+        response = const FtpResponse.error('Error while handling');
+      }
     }
     write(response);
   }

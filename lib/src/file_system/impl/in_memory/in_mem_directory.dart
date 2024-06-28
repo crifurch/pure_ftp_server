@@ -46,4 +46,9 @@ class InMemDirectory extends InMemEntity<Map<String, dynamic>?>
   void create() {
     // TODO: implement create
   }
+
+  @override
+  void delete() {
+    // TODO: implement delete
+  }
 }

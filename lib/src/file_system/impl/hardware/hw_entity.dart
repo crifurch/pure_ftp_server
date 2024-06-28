@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:pure_ftp_server/pure_ftp_server.dart';
+import 'package:pure_ftp_server/src/exceptions/ftp_access_denied_exception.dart';
+import 'package:pure_ftp_server/src/file_system/types/u_mask.dart';
 import 'package:pure_ftp_server/src/utils/extensions/file_dir_extension.dart';
 
 part 'hw_directory.dart';
+
 part 'hw_file.dart';
 
 abstract class HwEntity<T extends FileSystemEntity> implements FsEntity {
@@ -25,4 +28,23 @@ abstract class HwEntity<T extends FileSystemEntity> implements FsEntity {
 
   @override
   int get permissions => _entity.statSync().mode;
+
+  @override
+  void applyPermissions(UMask uMask) {
+    int permissions;
+    if (_entity is File) {
+      permissions = uMask.filePermissions;
+    } else if (_entity is Directory) {
+      permissions = uMask.dirPermissions;
+    } else {
+      throw FtpAccessDeniedException();
+    }
+    try {
+      if (!Platform.isWindows) {
+        Process.runSync('chmod', [permissions.toString(), _entity.path]);
+      }
+    } on Exception {
+      throw FtpAccessDeniedException();
+    }
+  }
 }

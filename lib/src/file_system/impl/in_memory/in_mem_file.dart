@@ -14,4 +14,9 @@ class InMemFile extends InMemEntity<Uint8List?> with FsFile {
   void create() {
     // TODO: implement create
   }
+
+  @override
+  void delete() {
+    // TODO: implement delete
+  }
 }

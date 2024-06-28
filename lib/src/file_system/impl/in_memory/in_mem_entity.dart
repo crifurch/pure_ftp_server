@@ -23,4 +23,9 @@ abstract class InMemEntity<T> implements FsEntity {
 
   @override
   int get permissions => 0x0777;
+
+  @override
+  void applyPermissions(UMask uMask) {
+    //todo: mind about that if need implements? if not set to empty
+  }
 }

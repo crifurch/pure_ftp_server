@@ -90,5 +90,6 @@ class StaticCommandHandler extends FtpCommandHandler {
 
   List<FtpCommandHandler> get _fsWrite => [
         MkdHandler(),
+        DeleHandler(),
       ];
 }
