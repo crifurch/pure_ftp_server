@@ -33,5 +33,3 @@ class PortHandler extends FtpCommandHandler {
   @override
   List<FtpCommands> get supportedCommands => [FtpCommands.PORT];
 }
-
-Future<void> enterActiveMode(String parameters) async {}

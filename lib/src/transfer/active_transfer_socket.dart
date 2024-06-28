@@ -14,6 +14,9 @@ class ActiveTransferSocket extends TransferSocket {
         _port = port;
 
   @override
+  bool get isConnected => _socket != null;
+
+  @override
   Future<void> connect({Duration? timeout}) => Socket.connect(
         _host,
         _port,

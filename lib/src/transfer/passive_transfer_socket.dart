@@ -15,6 +15,9 @@ class PassiveTransferSocket extends TransferSocket {
         _port = port;
 
   @override
+  bool get isConnected => _socket != null;
+
+  @override
   Future<void> connect({Duration? timeout}) async {
     _serverSocket = await ServerSocket.bind(_host, _port);
   }

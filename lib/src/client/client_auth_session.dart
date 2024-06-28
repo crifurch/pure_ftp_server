@@ -8,6 +8,7 @@ class ClientAuthorizedSession extends ClientSession {
   final FileSystem _fileSystem;
   final FtpWorkMode workMode;
   final OnUnAuthorize _unAuthorize;
+  final PassivePortsRange passivePortsRange;
   TransferSocket? _dataSocket;
   TransferType fileTransferType;
   String _currentPath;
@@ -16,6 +17,7 @@ class ClientAuthorizedSession extends ClientSession {
     required super.socket,
     required super.inStream,
     required this.workMode,
+    required this.passivePortsRange,
     required FileSystem fileSystem,
     required OnUnAuthorize unAuthorize,
     super.logCallback,

@@ -48,6 +48,7 @@ class FtpServer {
       fileSystem: user.fileSystem,
       workMode: user.workMode,
       unAuthorize: _continueNonAuthorized,
+      passivePortsRange: _initialOptions.passivePortsRange,
     );
   }
 

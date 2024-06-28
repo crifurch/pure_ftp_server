@@ -77,14 +77,14 @@ class StaticCommandHandler extends FtpCommandHandler {
         QuitHandler(),
       ];
 
-  List<FtpCommandHandler> get _fsLookOnly =>
-      [
+  List<FtpCommandHandler> get _fsLookOnly => [
         PwdHandler(),
         PortHandler(),
         ListHandler(),
         CdHandler(),
         CdUpHandler(),
         QuitHandler(),
+        PasvHandler(),
       ];
 
   List<FtpCommandHandler> get _fsReadOnly => [

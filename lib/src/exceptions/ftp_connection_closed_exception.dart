@@ -1,6 +1,6 @@
-import 'ftp_server_exception.dart';
+import 'package:pure_ftp_server/src/exceptions/ftp_non_response_exception.dart';
 
-class FtpConnectionClosedException extends FtpServerException {
+class FtpConnectionClosedException extends FtpNonResponseException {
   @override
   String toString() => 'Connection closed';
 }

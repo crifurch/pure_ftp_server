@@ -3,20 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:pure_ftp_server/src/exceptions/ftp_connection_closed_exception.dart';
+import 'package:pure_ftp_server/pure_ftp_server.dart';
+import 'package:pure_ftp_server/src/exceptions/ftp_non_response_exception.dart';
 import 'package:pure_ftp_server/src/exceptions/ftp_server_exception.dart';
-import 'package:pure_ftp_server/src/file_system/definition/file_system.dart';
-import 'package:pure_ftp_server/src/ftp/command/parser.dart';
-import 'package:pure_ftp_server/src/ftp/ftp_work_mode.dart';
-import 'package:pure_ftp_server/src/ftp/handler/ftp_command_handler.dart';
-import 'package:pure_ftp_server/src/ftp/handler/root_command_handler.dart';
-import 'package:pure_ftp_server/src/ftp/response/ftp_response.dart';
-import 'package:pure_ftp_server/src/ftp/transfer_type.dart';
-import 'package:pure_ftp_server/src/transfer/transfer_socket.dart';
 import 'package:pure_ftp_server/src/utils/extensions/string_extension.dart';
 import 'package:pure_ftp_server/src/utils/typedefs.dart';
 
 part 'client_auth_session.dart';
+
 part 'client_nonauth_session.dart';
 
 class ClientSession {
@@ -68,7 +62,7 @@ class ClientSession {
       _logCallback?.call(e.toString());
       if (e is FtpServerException) {
         response = FtpResponse.error(e.toString());
-      } else if (e is FtpConnectionClosedException) {
+      } else if (e is FtpNonResponseException) {
         return;
       } else {
         response = const FtpResponse.error('Error while handling');
