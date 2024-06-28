@@ -11,4 +11,11 @@ class HwFile extends HwEntity<File> with FsFile {
 
   @override
   void delete() => _entity.deleteSync(recursive: true);
+
+  @override
+  Stream<Uint8List> read([int? start, int? end]) async* {
+    await for (var i in _entity.openRead(start, end)) {
+      yield Uint8List.fromList(i);
+    }
+  }
 }

@@ -4,9 +4,12 @@ import 'dart:typed_data';
 import 'package:pure_ftp_server/src/utils/closable_container.dart';
 
 abstract class TransferSocket implements ClosableContainer {
-  void write(String data);
+  void write(Object data);
 
-  StreamSubscription<Uint8List> listen();
+  StreamSubscription<Uint8List> listen({
+    void Function(Uint8List event)? onData,
+    void Function()? onDone,
+  });
 
   Future<void> connect({Duration? timeout});
 

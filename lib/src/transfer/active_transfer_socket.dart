@@ -29,11 +29,15 @@ class ActiveTransferSocket extends TransferSocket {
   }
 
   @override
-  StreamSubscription<Uint8List> listen([
+  StreamSubscription<Uint8List> listen({
     void Function(Uint8List event)? onData,
-  ]) =>
-      _socket!.listen(onData);
+    void Function()? onDone,
+  }) =>
+      _socket!.listen(
+        onData,
+        onDone: onDone,
+      );
 
   @override
-  void write(String data) => _socket!.write(data);
+  void write(Object data) => _socket!.write(data);
 }

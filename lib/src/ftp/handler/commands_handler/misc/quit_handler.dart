@@ -19,5 +19,5 @@ class QuitHandler extends FtpCommandHandler {
   }
 
   @override
-  List<FtpCommands> get supportedCommands => [FtpCommands.TYPE];
+  List<FtpCommands> get supportedCommands => [FtpCommands.QUIT];
 }

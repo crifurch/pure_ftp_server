@@ -89,6 +89,7 @@ class StaticCommandHandler extends FtpCommandHandler {
 
   List<FtpCommandHandler> get _fsReadOnly => [
         TypeHandler(),
+        RetrHandler(),
       ];
 
   List<FtpCommandHandler> get _fsWrite => [

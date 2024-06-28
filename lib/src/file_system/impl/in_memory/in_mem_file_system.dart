@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:pure_ftp_server/src/file_system/definition/file_system.dart';
