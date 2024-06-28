@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:pure_ftp_server/src/exceptions/ftp_connection_closed_exception.dart';
 import 'package:pure_ftp_server/src/exceptions/ftp_server_exception.dart';
 import 'package:pure_ftp_server/src/file_system/definition/file_system.dart';
 import 'package:pure_ftp_server/src/ftp/command/parser.dart';
@@ -67,6 +68,8 @@ class ClientSession {
       _logCallback?.call(e.toString());
       if (e is FtpServerException) {
         response = FtpResponse.error(e.toString());
+      } else if (e is FtpConnectionClosedException) {
+        return;
       } else {
         response = const FtpResponse.error('Error while handling');
       }

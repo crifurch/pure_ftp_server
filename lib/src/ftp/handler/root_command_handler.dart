@@ -8,6 +8,7 @@ import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/cdup_handler
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/dele_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/mkd_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/fs/pwd_handler.dart';
+import 'package:pure_ftp_server/src/ftp/handler/commands_handler/misc/quit_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/misc/type_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/transfer/list_handler.dart';
 import 'package:pure_ftp_server/src/ftp/handler/commands_handler/transfer/port_handler.dart';
