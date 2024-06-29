@@ -39,5 +39,5 @@ class ActiveTransferSocket extends TransferSocket {
       );
 
   @override
-  void write(Object data) => _socket!.write(data);
+  void write(List<int> data) => _socket!.add(data);
 }

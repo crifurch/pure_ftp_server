@@ -38,14 +38,15 @@ class ListHandler extends FtpCommandHandler {
       //todo: mind about owner and group and number of items
       dataSocket.write(
         ''
-        '${entity.permissionsString}'
-        ' 1' // Number of items
-        ' unknown' // File owner
-        ' unknown' // File group
-        ' ${entity.size}' // File size in bytes
-        ' ${formatListDate(entity.lastModified)}' // lastModified dateTime
-        ' ${entity.name}'
-        '\r\n',
+                '${entity.permissionsString}'
+                ' 1' // Number of items
+                ' unknown' // File owner
+                ' unknown' // File group
+                ' ${entity.size}' // File size in bytes
+                ' ${formatListDate(entity.lastModified)}' // lastModified dateTime
+                ' ${entity.name}'
+                '\r\n'
+            .codeUnits,
       );
     }
     await session.closeDataSocket();
