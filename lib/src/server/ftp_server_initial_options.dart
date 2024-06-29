@@ -15,13 +15,14 @@ class FtpServerInitialOptions {
   final SecurityType secureType;
   final String welcomeMessage;
 
-  const FtpServerInitialOptions({required this.users,
-    this.host,
-    this.port = 21,
-    this.passivePortsRange = const PassivePortsRange(min: 55000, max: 65000),
-    this.keepAliveTimeout,
-    this.secureType = SecurityType.FTP,
-    this.welcomeMessage = 'Welcome to dart Pure FTP Server'})
+  const FtpServerInitialOptions(
+      {required this.users,
+      this.host,
+      this.port = 21,
+      this.passivePortsRange = const PassivePortsRange(min: 55000, max: 65000),
+      this.keepAliveTimeout,
+      this.secureType = SecurityType.FTP,
+      this.welcomeMessage = 'Welcome to dart Pure FTP Server'})
       : assert(users.length != 0, 'You must provide as least one user');
 }
 
@@ -60,8 +61,7 @@ class PassivePortsRange {
     required this.max,
   }) : assert(min < max, 'min port should be lower than max port');
 
-  int get freePort =>
-      PassPortsService.instance.allocatePort(min, max);
+  int get freePort => PassPortsService.instance.allocatePort(min, max);
 }
 
 enum SecurityType {
