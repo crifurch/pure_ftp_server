@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:pure_ftp_server/pure_ftp_server.dart';
 import 'package:pure_ftp_server/src/file_system/impl/hardware/hw_file_system.dart';
 import 'package:pure_ftp_server/src/file_system/impl/in_memory/in_mem_file_system.dart';
-import 'package:pure_ftp_server/src/file_system/types/u_mask.dart';
 
 abstract class FileSystem {
   UMask defaultUMask;

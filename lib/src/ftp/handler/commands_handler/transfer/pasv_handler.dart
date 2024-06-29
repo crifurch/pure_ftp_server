@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:pure_ftp_server/pure_ftp_server.dart';
-import 'package:pure_ftp_server/src/exceptions/ftp_non_response_exception.dart';
 
 class PasvHandler extends FtpCommandHandler {
   @override
