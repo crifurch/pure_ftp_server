@@ -39,5 +39,8 @@ class ActiveTransferSocket extends TransferSocket {
       );
 
   @override
+  Stream<Uint8List> listenStream() => _socket!;
+
+  @override
   void write(List<int> data) => _socket!.add(data);
 }

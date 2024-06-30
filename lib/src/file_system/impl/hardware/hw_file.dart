@@ -18,4 +18,7 @@ class HwFile extends HwEntity<File> with FsFile {
       yield Uint8List.fromList(i);
     }
   }
+
+  @override
+  IOSink write() => _entity.openWrite();
 }

@@ -11,6 +11,8 @@ abstract class TransferSocket implements ClosableContainer {
     void Function()? onDone,
   });
 
+  Stream<Uint8List> listenStream();
+
   Future<void> connect({Duration? timeout});
 
   bool get isConnected;

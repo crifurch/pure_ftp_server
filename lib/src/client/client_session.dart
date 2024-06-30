@@ -53,6 +53,7 @@ class ClientSession {
         CommandHandlerOptions(
           session: this,
           command: command,
+          logCallback: _logCallback,
         ),
       )
           .catchError(
